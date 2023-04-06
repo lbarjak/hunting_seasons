@@ -11,15 +11,15 @@ let hunting_seasons = {
     10: "október 1 - december 31",
     11: "október 1 - november 30",
     12: "április 15 - szeptember 30",
-    13: "Szeptember 1 - február vége",
+    13: "szeptember 1 - február vége",
     14: "május 1 - február vége"
 }
 
 let questions = {
-    1: ["gím tehén",1,10],
+    1: ["gím tehén",2,10],
     2: ["szajkó",3,10],
     3: ["erdei szalonka",4,10],
-    4: ["Vaddisznó",1,10],
+    4: ["vaddisznó",1,10],
     5: ["őzsuta",5,10],
     6: ["vörös fogoly",1,10],
     7: ["dámbika",5,10],
@@ -28,7 +28,7 @@ let questions = {
     10: ["muflon jerke",2,10],
     11: ["gímborjú",7,10],
     12: ["mosómedve",1,10],
-    13: ["Nyári lúd",8,10],
+    13: ["nyári lúd",8,10],
     14: ["dámborjú",5,10],
     15: ["gím golyóérett",9,10],
     16: ["balkáni gerle",6,10],

@@ -1,9 +1,33 @@
-let random = (Math.floor(Math.random() * 46))
+let numberOfRounds = 1
+for (const [key, value] of Object.entries(questions)) {
+    value[2] = numberOfRounds
+}
+let random
 let query = document.getElementById("query")
-query.innerHTML = questions[random][0]
+let radios = document.getElementsByTagName('input')
+let totalScore
 let randomQuestion = () => {
-    random = (Math.floor(Math.random() * 46))
-    query.innerHTML = questions[random][0]
+    random = (Math.floor(Math.random() * 45 + 1))
+    if (questions[random][2] > 0) {
+        query.innerHTML = (questions[random][0] + " "
+            + questions[random][1] + " "
+            + questions[random][2])
+    } else {
+        if(totalScoreFunc() > 0 ) {
+            randomQuestion()
+        } else {
+            alert("Vége!")
+        }
+    }
+}
+randomQuestion()
+
+let totalScoreFunc = () => {
+    totalScore = 0
+    for (const [key, value] of Object.entries(questions)) {
+        totalScore += value[2]
+    }
+    return totalScore
 }
 
 let sect = document.getElementById("sect")
@@ -46,19 +70,29 @@ let insertForm = (sect, title, name, min, max) => {
         if (questions[random][1] == event.target.value) {
             questions[random][2] = questions[random][2] - 1
             let result = questions[random][2]
-            console.log(result)
             span = document.getElementById(random)
             span.innerText = result
             query.style.color = "green"
+            query.innerHTML = (questions[random][0] + " "
+                + questions[random][1] + " "
+                + questions[random][2])
         } else {
             query.style.color = "red"
-            questions[random][2] = 10
-            span.innerHTML = 10
+            questions[random][2] = numberOfRounds
+            span.innerHTML = numberOfRounds
+            query.innerHTML = (questions[random][0] + " "
+                + questions[random][1] + " "
+                + numberOfRounds)
         }
         setTimeout(() => {
             query.style.color = "blue"
-            randomQuestion()
-          }, "2000")
+            radios[event.target.value - 1].checked = false
+            if(totalScoreFunc() > 0) {
+                randomQuestion()
+            } else {
+                alert("vége!")
+            }
+        }, "1000")
     })
 }
 
