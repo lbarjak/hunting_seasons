@@ -35,9 +35,6 @@ let names = []
 
 for (const [key, value] of Object.entries(questions)) {
     names.push(value[0])
-    //console.log(`${key}: ${value}`);
-    //questionsString += (value[0] + "</br>")
-    //column1.innerHTML += value[0] + "</br>"
 }
 for(i = 0; i < 23; i++) {
     column1.innerHTML += (i + 1) + ". " + names[i] + "</br>"
@@ -45,5 +42,4 @@ for(i = 0; i < 23; i++) {
 for(i = 23; i < names.length; i++) {
     column2.innerHTML += (i + 1) + ". " + names[i] + "</br>"
 }
-// let questionsList = document.getElementById("questionsList").innerHTML = questionsString
 

@@ -1,4 +1,4 @@
-body{
+body {
     margin-left: 10%;
 }
 
@@ -6,16 +6,24 @@ body{
     font-weight: bold;
     font-size: large;
     color: blue;
+    margin-top: 5%;
 }
 
-.columns {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+.column {
     width: 100%;
 }
 
-.column1, .column2, .column3 {
+.column1,
+.column2,
+.column3 {
     flex: 33.33%;
-    margin-top: 3%;
+}
+
+@media (min-width: 48em) {
+    .columns {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: 100%;
+    }
 }
