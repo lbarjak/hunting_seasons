@@ -1,5 +1,4 @@
 body{
-    margin: 5%;
     margin-left: 10%;
 }
 
@@ -18,4 +17,5 @@ body{
 
 .column1, .column2, .column3 {
     flex: 33.33%;
+    margin-top: 3%;
 }
