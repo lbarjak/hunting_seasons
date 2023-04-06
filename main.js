@@ -1,8 +1,9 @@
 let random = (Math.floor(Math.random() * 46))
-let query = document.getElementById("query").innerHTML = questions[random][0]
+let query = document.getElementById("query")
+query.innerHTML = questions[random][0]
 let randomQuestion = () => {
     random = (Math.floor(Math.random() * 46))
-    query = document.getElementById("query").innerHTML = questions[random][0]
+    query.innerHTML = questions[random][0]
 }
 
 let sect = document.getElementById("sect")
@@ -48,12 +49,16 @@ let insertForm = (sect, title, name, min, max) => {
             console.log(result)
             span = document.getElementById(random)
             span.innerText = result
+            query.style.color = "green"
         } else {
+            query.style.color = "red"
             questions[random][2] = 10
             span.innerHTML = 10
         }
-        //document.getElementById(random) = "xx"
-        // randomQuestion()
+        setTimeout(() => {
+            query.style.color = "blue"
+            randomQuestion()
+          }, "2000")
     })
 }
 
