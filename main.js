@@ -1,8 +1,13 @@
 let random = (Math.floor(Math.random() * 46))
 let query = document.getElementById("query").innerHTML = questions[random][0]
+let randomQuestion = () => {
+    random = (Math.floor(Math.random() * 46))
+    query = document.getElementById("query").innerHTML = questions[random][0]
+}
 
 let sect = document.getElementById("sect")
 let br = document.createElement("br")
+let selectedAnsver
 let insertForm = (sect, title, name, min, max) => {
     sect.innerHTML += '<p><b>' + title + '</b></p>'
     let form = document.createElement('form')
@@ -19,6 +24,9 @@ let insertForm = (sect, title, name, min, max) => {
         form.appendChild(br.cloneNode())
     }
     sect.append(form)
+    form.addEventListener('change', (event) => {
+        randomQuestion() 
+    })
 }
 
 insertForm(
@@ -31,15 +39,11 @@ insertForm(
 
 let column1 = document.getElementsByClassName("column1")[0]
 let column2 = document.getElementsByClassName("column2")[0]
-let names = []
 
-for (const [key, value] of Object.entries(questions)) {
-    names.push(value[0])
-}
 for(i = 0; i < 23; i++) {
-    column1.innerHTML += (i + 1) + ". " + names[i] + "</br>"
+    column1.innerHTML += questions[i + 1][2] + " " + (i + 1) + ". " + questions[i + 1][0] + "</br>"
 }
-for(i = 23; i < names.length; i++) {
-    column2.innerHTML += (i + 1) + ". " + names[i] + "</br>"
+for(i = 23; i < 45; i++) {
+    column2.innerHTML += questions[i + 1][2] + " " + (i + 1) + ". " + questions[i + 1][0] + "</br>"
 }
 
