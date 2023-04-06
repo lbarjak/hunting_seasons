@@ -1,0 +1,21 @@
+body{
+    margin: 5%;
+    margin-left: 10%;
+}
+
+#query {
+    font-weight: bold;
+    font-size: large;
+    color: blue;
+}
+
+.columns {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.column1, .column2, .column3 {
+    flex: 33.33%;
+}
