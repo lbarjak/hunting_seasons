@@ -14,7 +14,7 @@ let insertForm = (sect, title, name, min, max) => {
         input.name = name
         input.value = i
         let label = document.createElement('label')
-        label.textContent = i + ' ' + hunting_seasons[i] + ' '
+        label.textContent = ' ' + hunting_seasons[i] + ' '
         form.append(label)
         form.appendChild(br.cloneNode())
     }
