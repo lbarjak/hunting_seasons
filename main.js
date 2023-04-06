@@ -7,12 +7,29 @@ let randomQuestion = () => {
 
 let sect = document.getElementById("sect")
 let br = document.createElement("br")
+
+let column1 = document.getElementsByClassName("column1")[0]
+let column2 = document.getElementsByClassName("column2")[0]
+let span
+for (let i = 0; i < 23; i++) {
+    column1.innerHTML += "<span id='" + (i + 1) + "'></span>"
+        + " " + questions[i + 1][0] + "</br>"
+    span = document.getElementById(i + 1)
+    span.innerHTML = questions[i + 1][2]
+}
+for (let i = 23; i < 45; i++) {
+    column2.innerHTML += "<span id='" + (i + 1) + "'></span>"
+        + " " + questions[i + 1][0] + "</br>"
+    span = document.getElementById(i + 1)
+    span.innerHTML = questions[i + 1][2]
+}
+
 let selectedAnsver
 let insertForm = (sect, title, name, min, max) => {
     sect.innerHTML += '<p><b>' + title + '</b></p>'
     let form = document.createElement('form')
     form.setAttribute('id', name)
-    for (let i = min; i < max; i++) {
+    for (let i = min; i <= max; i++) {
         let input = document.createElement('input')
         form.append(input)
         input.type = 'radio'
@@ -25,7 +42,18 @@ let insertForm = (sect, title, name, min, max) => {
     }
     sect.append(form)
     form.addEventListener('change', (event) => {
-        randomQuestion() 
+        if (questions[random][1] == event.target.value) {
+            questions[random][2] = questions[random][2] - 1
+            let result = questions[random][2]
+            console.log(result)
+            span = document.getElementById(random)
+            span.innerText = result
+        } else {
+            questions[random][2] = 10
+            span.innerHTML = 10
+        }
+        //document.getElementById(random) = "xx"
+        // randomQuestion()
     })
 }
 
@@ -36,14 +64,3 @@ insertForm(
     1,
     14
 )
-
-let column1 = document.getElementsByClassName("column1")[0]
-let column2 = document.getElementsByClassName("column2")[0]
-
-for(i = 0; i < 23; i++) {
-    column1.innerHTML += questions[i + 1][2] + " " + (i + 1) + ". " + questions[i + 1][0] + "</br>"
-}
-for(i = 23; i < 45; i++) {
-    column2.innerHTML += questions[i + 1][2] + " " + (i + 1) + ". " + questions[i + 1][0] + "</br>"
-}
-

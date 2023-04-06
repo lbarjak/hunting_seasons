@@ -42,7 +42,7 @@ let questions = {
     24: ["mezei nyúl",10,10],
     25: ["borz",3,10],
     26: ["szárcsa",13,10],
-    27: ["10ezsma10ocok",1,10],
+    27: ["pézsmapocok",1,10],
     28: ["dám golyóérett",11,10],
     29: ["őzbak",12,10],
     30: ["örvös galamb",6,10],
