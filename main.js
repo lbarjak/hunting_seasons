@@ -1,24 +1,32 @@
 let numberOfRounds = 3
+let numberOfItems = 0
 for (const [key, value] of Object.entries(questions)) {
     value[2] = numberOfRounds
+    numberOfItems++
 }
 let random
 let query = document.getElementById("query")
 let radios = document.getElementsByTagName('input')
 let totalScore
+
+let reload = () => {
+    fetch('', {
+        'Cache-Control': 'no-cache'
+    })
+        .then(() => location.reload())
+        .catch((error) => console.warn(error))
+}
+
 let randomQuestion = () => {
-    random = (Math.floor(Math.random() * 45 + 1))
+    random = (Math.floor(Math.random() * numberOfItems + 1))
     if (questions[random][2] > 0) {
-        // query.innerHTML = (questions[random][0] + " "
-        // + questions[random][1] + " "
-        // + questions[random][2])
-        query.innerHTML = (questions[random][0] + " "
-            + questions[random][2])
+        query.innerHTML = questions[random][0] + " (" + questions[random][2] + ")"
     } else {
-        if(totalScoreFunc() > 0 ) {
+        if (totalScoreFunc() > 0) {
             randomQuestion()
         } else {
             alert("Vége!")
+            reload()
         }
     }
 }
@@ -38,13 +46,14 @@ let br = document.createElement("br")
 let column1 = document.getElementsByClassName("column1")[0]
 let column2 = document.getElementsByClassName("column2")[0]
 let span
-for (let i = 0; i < 23; i++) {
+let half = Math.round(numberOfItems / 2)
+for (let i = 0; i < half; i++) {
     column1.innerHTML += "<span id='" + (i + 1) + "'></span>"
         + " " + questions[i + 1][0] + "</br>"
     span = document.getElementById(i + 1)
     span.innerHTML = questions[i + 1][2]
 }
-for (let i = 23; i < 45; i++) {
+for (let i = half; i < numberOfItems; i++) {
     column2.innerHTML += "<span id='" + (i + 1) + "'></span>"
         + " " + questions[i + 1][0] + "</br>"
     span = document.getElementById(i + 1)
@@ -69,32 +78,30 @@ let insertForm = (sect, title, name, min, max) => {
     }
     sect.append(form)
     form.addEventListener('change', (event) => {
+        span = document.getElementById(random)
         if (questions[random][1] == event.target.value) {
             questions[random][2] = questions[random][2] - 1
             let result = questions[random][2]
-            span = document.getElementById(random)
             span.innerText = result
             query.style.color = "green"
-            // query.innerHTML = (questions[random][0] + " "
-            // + questions[random][1] + " "
-            // + questions[random][2])
-            query.innerHTML = (questions[random][0] + " "
-                + questions[random][2])
+            query.innerHTML = questions[random][0] + " (" + questions[random][2] + ")"
+            radios[event.target.value - 1].disabled = true
         } else {
             query.style.color = "red"
             questions[random][2] = numberOfRounds
-            span.innerHTML = numberOfRounds
-            query.innerHTML = (questions[random][0] + " "
-                + questions[random][1] + " "
-                + numberOfRounds)
+            span.innerHTML = questions[random][2]
+            query.innerHTML = questions[random][0] + " (" + questions[random][2] + ")"
+            radios[event.target.value - 1].disabled = true
         }
         setTimeout(() => {
             query.style.color = "blue"
             radios[event.target.value - 1].checked = false
-            if(totalScoreFunc() > 0) {
+            radios[event.target.value - 1].disabled = false
+            if (totalScoreFunc() > 0) {
                 randomQuestion()
             } else {
                 alert("vége!")
+                reload()
             }
         }, "1000")
     })
