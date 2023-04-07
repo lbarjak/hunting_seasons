@@ -1,4 +1,4 @@
-let numberOfRounds = 1
+let numberOfRounds = 3
 for (const [key, value] of Object.entries(questions)) {
     value[2] = numberOfRounds
 }
@@ -9,8 +9,10 @@ let totalScore
 let randomQuestion = () => {
     random = (Math.floor(Math.random() * 45 + 1))
     if (questions[random][2] > 0) {
+        // query.innerHTML = (questions[random][0] + " "
+        // + questions[random][1] + " "
+        // + questions[random][2])
         query.innerHTML = (questions[random][0] + " "
-            + questions[random][1] + " "
             + questions[random][2])
     } else {
         if(totalScoreFunc() > 0 ) {
@@ -73,8 +75,10 @@ let insertForm = (sect, title, name, min, max) => {
             span = document.getElementById(random)
             span.innerText = result
             query.style.color = "green"
+            // query.innerHTML = (questions[random][0] + " "
+            // + questions[random][1] + " "
+            // + questions[random][2])
             query.innerHTML = (questions[random][0] + " "
-                + questions[random][1] + " "
                 + questions[random][2])
         } else {
             query.style.color = "red"
