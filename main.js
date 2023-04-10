@@ -1,6 +1,6 @@
-let numberOfRounds = 3
+let numberOfRounds = 1
 let numberOfItems = 0
-for (const [key, value] of Object.entries(questions)) {
+for (const value of Object.values(questions)) {
     value[2] = numberOfRounds
     numberOfItems++
 }
@@ -34,7 +34,7 @@ randomQuestion()
 
 let totalScoreFunc = () => {
     totalScore = 0
-    for (const [key, value] of Object.entries(questions)) {
+    for (const value of Object.values(questions)) {
         totalScore += value[2]
     }
     return totalScore
