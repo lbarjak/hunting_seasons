@@ -25,8 +25,8 @@ let randomQuestion = () => {
         if (totalScoreFunc() > 0) {
             randomQuestion()
         } else {
-            alert("Vége!")
-            reload()
+            query.innerHTML = "Vége!"//alert("Vége!")
+            //reload()
         }
     }
 }
@@ -77,6 +77,7 @@ let insertForm = (sect, title, name, min, max) => {
         form.appendChild(br.cloneNode())
     }
     sect.append(form)
+
     form.addEventListener('change', (event) => {
         span = document.getElementById(random)
         if (questions[random][1] == event.target.value) {
@@ -102,8 +103,11 @@ let insertForm = (sect, title, name, min, max) => {
             if (totalScoreFunc() > 0) {
                 randomQuestion()
             } else {
-                alert("vége!")
-                reload()
+                query.innerHTML = "Vége!"//alert("vége!")
+                //reload()
+                for(const radio of radios) {
+                    radio.disabled = true
+                }
             }
         }, "1000")
     })
