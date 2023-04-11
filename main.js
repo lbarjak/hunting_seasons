@@ -48,14 +48,14 @@ let column2 = document.getElementsByClassName("column2")[0]
 let span
 let half = Math.round(numberOfItems / 2)
 for (let i = 0; i < half; i++) {
-    column1.innerHTML += "<span id='" + (i + 1) + "'></span>"
-        + " " + questions[i + 1][0] + "</br>"
+    column1.innerHTML += "<span id='" + (i + 1) + "'></span><span>"
+        + " " + questions[i + 1][0] + "</span></br>"
     span = document.getElementById(i + 1)
     span.innerHTML = questions[i + 1][2]
 }
 for (let i = half; i < numberOfItems; i++) {
-    column2.innerHTML += "<span id='" + (i + 1) + "'></span>"
-        + " " + questions[i + 1][0] + "</br>"
+    column2.innerHTML += "<span id='" + (i + 1) + "'></span><span>"
+        + " " + questions[i + 1][0] + "</span></br>"
     span = document.getElementById(i + 1)
     span.innerHTML = questions[i + 1][2]
 }
@@ -86,11 +86,13 @@ let insertForm = (sect, title, name, min, max) => {
             span.innerText = result
             query.style.color = "green"
             span.style.color = "green"
+            span.nextElementSibling.style.color = "green"
             query.innerHTML = questions[random][0] + " (" + questions[random][2] + ")"
             radios[event.target.value - 1].disabled = true
         } else {
             query.style.color = "red"
             span.style.color = "red"
+            span.nextElementSibling.style.color = "red"
             questions[random][2] = 0//numberOfRounds
             span.innerHTML = questions[random][2]
             query.innerHTML = questions[random][0] + " (" + questions[random][2] + ")"
