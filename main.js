@@ -80,15 +80,17 @@ let insertForm = (sect, title, name, min, max) => {
     form.addEventListener('change', (event) => {
         span = document.getElementById(random)
         if (questions[random][1] == event.target.value) {
-            questions[random][2] = questions[random][2] - 1
+            questions[random][2] = 0//questions[random][2] - 1
             let result = questions[random][2]
             span.innerText = result
             query.style.color = "green"
+            span.style.color = "green"
             query.innerHTML = questions[random][0] + " (" + questions[random][2] + ")"
             radios[event.target.value - 1].disabled = true
         } else {
             query.style.color = "red"
-            questions[random][2] = numberOfRounds
+            span.style.color = "red"
+            questions[random][2] = 0//numberOfRounds
             span.innerHTML = questions[random][2]
             query.innerHTML = questions[random][0] + " (" + questions[random][2] + ")"
             radios[event.target.value - 1].disabled = true
