@@ -6,7 +6,6 @@ for (const value of Object.values(questions)) {
 }
 let random
 let query = document.getElementById("query")
-let radios = document.getElementsByTagName('input')
 let totalScore
 
 let reload = () => {
@@ -78,6 +77,8 @@ let insertForm = (sect, title, name, min, max) => {
     }
     sect.append(form)
 
+    let radios = document.getElementsByTagName('input')
+
     form.addEventListener('change', (event) => {
         span = document.getElementById(random)
         if (questions[random][1] == event.target.value) {
@@ -88,7 +89,10 @@ let insertForm = (sect, title, name, min, max) => {
             span.style.color = "green"
             span.nextElementSibling.style.color = "green"
             query.innerHTML = questions[random][0] + " (" + questions[random][2] + ")"
-            radios[event.target.value - 1].disabled = true
+            //radios[event.target.value - 1].disabled = true
+            for (const radio of radios) {
+                radio.disabled = true
+            }
         } else {
             query.style.color = "red"
             span.style.color = "red"
@@ -96,18 +100,25 @@ let insertForm = (sect, title, name, min, max) => {
             questions[random][2] = 0//numberOfRounds
             span.innerHTML = questions[random][2]
             query.innerHTML = questions[random][0] + " (" + questions[random][2] + ")"
-            radios[event.target.value - 1].disabled = true
+            //radios[event.target.value - 1].disabled = true
+            for (const radio of radios) {
+                radio.disabled = true
+            }
         }
         setTimeout(() => {
             query.style.color = "blue"
             radios[event.target.value - 1].checked = false
-            radios[event.target.value - 1].disabled = false
+            //radios[event.target.value - 1].disabled = false
+            //disableRadios(false)
+            for (const radio of radios) {
+                radio.disabled = false
+            }
             if (totalScoreFunc() > 0) {
                 randomQuestion()
             } else {
                 query.innerHTML = "Vége!"//alert("vége!")
                 //reload()
-                for(const radio of radios) {
+                for (const radio of radios) {
                     radio.disabled = true
                 }
             }
