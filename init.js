@@ -1,19 +1,17 @@
 let animals = () => {
     let column1 = document.getElementsByClassName("column1")[0]
     let column2 = document.getElementsByClassName("column2")[0]
-    let span
+    let span = document.createElement("span")
     let half = Math.round(questions.length / 2)
     for (let i = 0; i < half; i++) {
-        column1.innerHTML += "<span id='" + i + "'></span><span>"
-            + " " + questions[i][0] + "</span></br>"
+        column1.innerHTML += "<span id=" + i + "></span></br>"
         span = document.getElementById(i)
-        span.innerHTML = questions[i][2]
+        span.innerHTML = questions[i][0]
     }
     for (let i = half; i < questions.length; i++) {
-        column2.innerHTML += "<span id='" + i + "'></span><span>"
-            + " " + questions[i][0] + "</span></br>"
+        column2.innerHTML += "<span id=" + i + "></span></br>"
         span = document.getElementById(i)
-        span.innerHTML = questions[i][2]
+        span.innerHTML = questions[i][0]
     }
 }
 animals()

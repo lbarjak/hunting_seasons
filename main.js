@@ -23,7 +23,7 @@ form.addEventListener('change', (event) => {
 
     let setAnswer = (color) => {
         questions[random][2] = 0
-        span.innerText = 0
+        span.innerText = questions[random][0]
         query.style.color = color
         span.style.color = color
         span.nextElementSibling.style.color = color
