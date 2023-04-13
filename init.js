@@ -47,5 +47,5 @@ insertForm(
     'válaszok:',
     'answers',
     0,
-    questions.length
+    hunting_seasons.length - 1
 )
