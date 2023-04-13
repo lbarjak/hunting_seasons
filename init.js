@@ -47,5 +47,5 @@ insertForm(
     'válaszok:',
     'answers',
     0,
-    13
+    questions.length
 )
