@@ -6,7 +6,7 @@ let random
 let randomQuestion = () => {
     random = (Math.floor(Math.random() * questions.length))
     if (questions[random][2] > 0) {
-        query.innerHTML = questions[random][0] + " (" + questions[random][1] + ")"
+        query.innerHTML = questions[random][0]// + " (" + questions[random][1] + ")"
         totalScore--
     } else {
         if (totalScore > 0) {
