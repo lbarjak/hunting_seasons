@@ -24,7 +24,7 @@ let questions = [
     ["fogoly", "október 1 - december 31", 1],
     ["mezei nyúl", "október 1 - december 31", 1],
     ["borz", "július 1 - február vége", 1],
-    ["szárcsa", "szeptember 1 - február vége", 1],
+    ["szárcsa", "szeptember 1 - január 31", 1],
     ["pézsmapocok", "egész évben", 1],
     ["dám golyóérett", "október 1 - november 30", 1],
     ["őzbak", "április 15 - szeptember 30", 1],
