@@ -41,7 +41,7 @@ let questions = {
     23: ["fogoly", 10, 10],
     24: ["mezei nyúl", 10, 10],
     25: ["borz", 3, 10],
-    26: ["szárcsa", 13, 10],
+    26: ["szárcsa", 2, 10],
     27: ["pézsmapocok", 1, 10],
     28: ["dám golyóérett", 11, 10],
     29: ["őzbak", 12, 10],
