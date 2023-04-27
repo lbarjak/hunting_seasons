@@ -1,12 +1,34 @@
+let br
+let span
+let column1 = document.getElementsByClassName("column1")[0]
+let column2 = document.getElementsByClassName("column2")[0]
+let sect = document.getElementById("sect")
+let div = document.createElement('div')
 let query = document.getElementById("query")
-let radios = document.getElementsByTagName('input')
 let totalScore = questions.length
 let random
+
+let column = (column, i) => {
+    span = document.createElement("span")
+    column.append(span)
+    span.setAttribute("id", i)
+    br = document.createElement("br")
+    column.append(br)
+    span.innerHTML = questions[i][0]
+}
+
+let half = Math.round(questions.length / 2)
+for (let i = 0; i < half; i++) {
+    column(column1, i)
+}
+for (let i = half; i < questions.length; i++) {
+    column(column2, i)
+}
 
 let randomQuestion = () => {
     random = (Math.floor(Math.random() * questions.length))
     if (questions[random][2] > 0) {
-        query.innerHTML = questions[random][0]// + " (" + questions[random][1] + ")"
+        query.innerHTML = questions[random][0] + " (" + questions[random][1] + ")"
         totalScore--
     } else {
         if (totalScore > 0) {
@@ -18,22 +40,32 @@ let randomQuestion = () => {
 }
 randomQuestion()
 
-form.addEventListener('change', (event) => {
+let handler = (e) => {
+    let index = e.target.id - 100
+
     let span = document.getElementById(random)
+
+    let switchEvent = on => {
+        for (let i = 0; i < hunting_seasons.length; i++) {
+            span = document.getElementById(100 + i)
+            if (on) {
+                span.addEventListener('click', handler)
+            } else {
+                span.removeEventListener('click', handler)
+            }
+        }
+    }
 
     let setAnswer = (color) => {
         questions[random][2] = 0
         span.innerText = questions[random][0]
         query.style.color = color
         span.style.color = color
-        span.nextElementSibling.style.color = color
         query.innerHTML = questions[random][0]
-        for (const radio of radios) {
-            radio.disabled = true
-        }
+        switchEvent(false)
     }
 
-    if (questions[random][1] == hunting_seasons[event.target.value]) {
+    if (questions[random][1] == hunting_seasons[index]) {
         setAnswer("green")
     } else {
         setAnswer("red")
@@ -41,17 +73,23 @@ form.addEventListener('change', (event) => {
 
     setTimeout(() => {
         query.style.color = "blue"
-        radios[event.target.value].checked = false
-        for (const radio of radios) {
-            radio.disabled = false
-        }
+        switchEvent(true)
         if (totalScore > 0) {
             randomQuestion()
         } else {
             query.innerHTML = "Vége!"
-            for (const radio of radios) {
-                radio.disabled = true
-            }
+            switchEvent(false)
         }
     }, "1000")
-})
+}
+
+div.setAttribute('id', 'answers')
+for (let i = 0; i <= hunting_seasons.length - 1; i++) {
+    span = document.createElement("span")
+    span.setAttribute('id', 100 + i)
+    span.textContent = hunting_seasons[i]
+    span.addEventListener('click', handler)
+    div.append(span)
+    div.appendChild(br.cloneNode())
+}
+sect.append(div)
