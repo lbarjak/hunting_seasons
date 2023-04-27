@@ -2,11 +2,6 @@ let br
 let span
 let column1 = document.getElementsByClassName("column1")[0]
 let column2 = document.getElementsByClassName("column2")[0]
-let sect = document.getElementById("sect")
-let div = document.createElement('div')
-let query = document.getElementById("query")
-let totalScore = questions.length
-let random
 
 let column = (column, i) => {
     span = document.createElement("span")
@@ -25,6 +20,9 @@ for (let i = half; i < questions.length; i++) {
     column(column2, i)
 }
 
+let query = document.getElementById("query")
+let random
+let totalScore = questions.length
 let randomQuestion = () => {
     random = (Math.floor(Math.random() * questions.length))
     if (questions[random][2] > 0) {
@@ -83,6 +81,8 @@ let handler = (e) => {
     }, "1000")
 }
 
+let sect = document.getElementById("sect")
+let div = document.createElement('div')
 div.setAttribute('id', 'answers')
 for (let i = 0; i <= hunting_seasons.length - 1; i++) {
     span = document.createElement("span")
