@@ -29,11 +29,7 @@ let randomQuestion = () => {
         query.innerHTML = questions[random][0]// + " (" + questions[random][1] + ")"
         totalScore--
     } else {
-        if (totalScore > 0) {
-            randomQuestion()
-        } else {
-            query.innerHTML = "Vége!"
-        }
+        randomQuestion()
     }
 }
 randomQuestion()
