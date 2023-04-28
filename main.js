@@ -38,21 +38,18 @@ let randomQuestion = () => {
 }
 randomQuestion()
 
+let switchEvent = on => {
+    if (on) {
+        div.addEventListener('click', handler)
+    } else {
+        div.removeEventListener('click', handler)
+    }
+}
+
 let handler = (e) => {
     let index = e.target.id - 100
 
     let span = document.getElementById(random)
-
-    let switchEvent = on => {
-        for (let i = 0; i < hunting_seasons.length; i++) {
-            span = document.getElementById(100 + i)
-            if (on) {
-                span.addEventListener('click', handler)
-            } else {
-                span.removeEventListener('click', handler)
-            }
-        }
-    }
 
     let setAnswer = (color) => {
         questions[random][2] = 0
@@ -62,33 +59,34 @@ let handler = (e) => {
         query.innerHTML = questions[random][0]
         switchEvent(false)
     }
-
-    if (questions[random][1] == hunting_seasons[index]) {
-        setAnswer("green")
-    } else {
-        setAnswer("red")
-    }
-
-    setTimeout(() => {
-        query.style.color = "blue"
-        switchEvent(true)
-        if (totalScore > 0) {
-            randomQuestion()
+    if (hunting_seasons[index] != undefined) {
+        if (questions[random][1] == hunting_seasons[index]) {
+            setAnswer("green")
         } else {
-            query.innerHTML = "Vége!"
-            switchEvent(false)
+            setAnswer("red")
         }
-    }, "1000")
+
+        setTimeout(() => {
+            query.style.color = "blue"
+            switchEvent(true)
+            if (totalScore > 0) {
+                randomQuestion()
+            } else {
+                query.innerHTML = "Vége!"
+                switchEvent(false)
+            }
+        }, "1000")
+    }
 }
 
 let sect = document.getElementById("sect")
 let div = document.createElement('div')
 div.setAttribute('id', 'answers')
+switchEvent(true)
 for (let i = 0; i <= hunting_seasons.length - 1; i++) {
     span = document.createElement("span")
     span.setAttribute('id', 100 + i)
     span.textContent = hunting_seasons[i]
-    span.addEventListener('click', handler)
     div.append(span)
     div.appendChild(br.cloneNode())
 }
