@@ -6,6 +6,7 @@ body {
     font-weight: bold;
     font-size: large;
     color: blue;
+    margin-top: 5%;
 }
 
 .column {
@@ -28,5 +29,5 @@ body {
 }
 
 #answers {
-    line-height: 150%;
+    line-height: 145%;
 }
