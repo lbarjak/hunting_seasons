@@ -46,8 +46,10 @@ let handler = (e) => {
     let index = e.target.id - 100
 
     let span = document.getElementById(random)
-
     let setAnswer = (color) => {
+        e.target.style.fontWeight = "bold"
+        e.target.style.color = color
+        span.style.fontWeight = "bold"
         questions[random][2] = 0
         span.innerText = questions[random][0]
         query.style.color = color
@@ -55,6 +57,7 @@ let handler = (e) => {
         query.innerHTML = questions[random][0]
         switchEvent(false)
     }
+
     if (hunting_seasons[index] != undefined) {
         if (questions[random][1] == hunting_seasons[index]) {
             setAnswer("green")
@@ -63,6 +66,8 @@ let handler = (e) => {
         }
 
         setTimeout(() => {
+            e.target.style.fontWeight = "normal"
+            e.target.style.color = "black"
             query.style.color = "blue"
             switchEvent(true)
             if (totalScore > 0) {
